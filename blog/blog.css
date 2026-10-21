@@ -1,0 +1,58 @@
+/* Wezesha blog: same jacaranda palette as the home page, set for long reading. */
+:root {
+  --jacaranda: #2a1b5c; --bloom: #8f72e8; --petal: #ece6ff; --pollen: #ffd45c;
+  --lilac: #f7f4ff; --ink: #1d1440; --ink-soft: #4b4170; --line: #ddd5f7;
+  --display: "Bricolage Grotesque", "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  --text: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { font-size: 106.25%; }
+body { margin: 0; background: var(--lilac); color: var(--ink); font-family: var(--text); line-height: 1.65; }
+a { color: #4a2fb0; text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--pollen); outline-offset: 3px; border-radius: 6px; }
+.skip { position: absolute; left: 16px; top: -60px; background: var(--pollen); color: var(--ink); padding: 10px 16px; border-radius: 10px; font-weight: 700; z-index: 5; }
+.skip:focus { top: 12px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+header.top { background: var(--jacaranda); color: var(--petal); }
+.bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 18px; padding-bottom: 18px; flex-wrap: wrap; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 1.35rem; }
+.brand svg { width: 30px; height: 30px; }
+nav { display: flex; align-items: center; gap: 6px; }
+nav a { color: var(--petal); text-decoration: none; font-weight: 700; padding: 8px 12px; border-radius: 10px; }
+nav a[aria-current=page] { background: rgba(236, 230, 255, .14); }
+nav a.pill { border: 1.5px solid rgba(236, 230, 255, .45); border-radius: 999px; margin-left: 6px; }
+main { padding-top: 48px; padding-bottom: 64px; }
+h1, h2, h3 { font-family: var(--display); letter-spacing: -0.015em; line-height: 1.15; color: var(--ink); }
+h1 { font-size: clamp(2rem, 4.6vw, 3rem); font-weight: 800; margin: 0 0 14px; max-width: 22em; }
+.standfirst { font-size: 1.25rem; color: var(--ink-soft); max-width: 34em; margin: 0 0 36px; }
+.meta { color: var(--ink-soft); font-size: .95rem; margin: 0 0 12px; }
+.meta a { color: var(--ink-soft); }
+/* the article column */
+.post { max-width: 720px; }
+.post h2 { font-size: 1.6rem; font-weight: 700; margin: 2.2em 0 .5em; }
+.post h3 { font-size: 1.25rem; margin: 1.6em 0 .4em; }
+.post p, .post li { font-size: 1.1rem; }
+.post li { margin: .35em 0; }
+.post img, .post figure svg { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--line); background: #fff; }
+.post p:has(> img) { margin: 1.8em 0; }
+.post figure { margin: 2em 0; }
+.post figcaption { color: var(--ink-soft); font-size: .95rem; margin-top: 8px; }
+.post table { width: 100%; border-collapse: collapse; margin: 1.6em 0; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line); font-size: 1rem; }
+.post th, .post td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.post th { background: #efeaff; }
+.post pre { background: var(--jacaranda); color: var(--petal); padding: 18px 20px; border-radius: 12px; overflow-x: auto; font-size: .9rem; line-height: 1.5; }
+.post code { font-size: .92em; }
+.post :not(pre) > code { background: #ebe5ff; padding: 2px 6px; border-radius: 6px; }
+.post blockquote { margin: 1.5em 0; padding: 4px 20px; border-left: 4px solid var(--bloom); color: var(--ink-soft); }
+.back { margin-top: 3em; }
+/* the list of posts */
+.posts { list-style: none; padding: 0; margin: 0; display: grid; gap: 22px; }
+.posts .card { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 26px; align-items: center; background: #fff; border-radius: 18px; padding: 18px; box-shadow: inset 0 0 0 1px var(--line); }
+.posts .card:not(:has(img)) { grid-template-columns: 1fr; }
+.posts img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); }
+.posts h2 { font-size: 1.45rem; margin: 0 0 8px; }
+.posts h2 a { color: var(--ink); text-decoration: none; }
+.posts h2 a:hover { text-decoration: underline; }
+.posts p { margin: 0 0 8px; color: var(--ink-soft); }
+.foot { padding-top: 24px; padding-bottom: 48px; color: var(--ink-soft); font-size: .95rem; border-top: 1px solid var(--line); }
+@media (max-width: 760px) { .posts .card { grid-template-columns: 1fr; } }

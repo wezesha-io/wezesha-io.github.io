@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wezesha: use any website by voice</title>
+<link rel="canonical" href="https://wezesha-io.kilimo.tech/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wezesha">
+<meta property="og:title" content="Wezesha: use any website by voice">
+<meta property="og:description" content="Wezesha lets people who find a mouse, keyboard or screen hard to use control any website or app by voice, on their own device.">
+<meta property="og:url" content="https://wezesha-io.kilimo.tech/">
+<meta property="og:image" content="https://wezesha-io.kilimo.tech/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Wezesha: use any website by voice">
+<meta property="og:locale" content="en_KE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Wezesha: use any website by voice">
+<meta name="twitter:description" content="Wezesha lets people who find a mouse, keyboard or screen hard to use control any website or app by voice, on their own device.">
+<meta name="twitter:image" content="https://wezesha-io.kilimo.tech/og.png">
+<meta name="description" content="Wezesha lets people who find a mouse, keyboard or screen hard to use control any website or app by voice, on their own device.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="voicenav-assets" content="https://wezesha-demo.kilimo.tech/voicenav/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --jacaranda: #2a1b5c;
+    --jacaranda-deep: #1d1342;
+    --bloom: #8f72e8;
+    --petal: #ece6ff;
+    --petal-dim: #b9acec;
+    --pollen: #ffd45c;
+    --lilac: #f7f4ff;
+    --ink: #1d1440;
+    --ink-soft: #4b4170;
+    --display: "Bricolage Grotesque", "Atkinson Hyperlegible Next", system-ui, sans-serif;
+    --text: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { font-size: 106.25%; }
+  body { margin: 0; font-family: var(--text); color: var(--ink); background: var(--lilac); line-height: 1.6; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--pollen); outline-offset: 4px; border-radius: 10px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .skip { position: absolute; left: 16px; top: -60px; z-index: 5; background: var(--pollen); color: var(--ink); padding: 10px 16px; border-radius: 10px; font-weight: 700; text-decoration: none; }
+  .skip:focus { top: 12px; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    background:
+      radial-gradient(1200px 520px at 85% -10%, rgba(143, 114, 232, .38), transparent 60%),
+      radial-gradient(700px 400px at -10% 110%, rgba(143, 114, 232, .22), transparent 60%),
+      var(--jacaranda);
+    color: var(--petal);
+    padding: 0 24px 72px;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; }
+  nav.top { display: flex; align-items: center; justify-content: space-between; padding: 26px 0 0; gap: 16px; }
+  .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 1.45rem; letter-spacing: -0.01em; color: #fff; }
+  .brand svg { width: 34px; height: 34px; }
+  .pill { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 18px; border-radius: 999px; border: 1.5px solid rgba(236, 230, 255, .45); color: var(--petal); text-decoration: none; font-weight: 700; }
+  .pill:hover { background: rgba(236, 230, 255, .1); }
+  .navlinks { display: inline-flex; align-items: center; gap: 10px; }
+  .navlink { color: var(--petal); font-weight: 700; text-decoration: none; padding: 8px 12px; border-radius: 10px; }
+  .navlink:hover { background: rgba(236, 230, 255, .1); }
+
+  .stage { padding-top: clamp(56px, 11vh, 120px); max-width: 980px; }
+  .cue { display: flex; align-items: center; gap: 12px; color: var(--petal-dim); font-size: 1rem; margin: 0 0 22px; }
+  .mic-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--pollen); box-shadow: 0 0 0 0 rgba(255, 212, 92, .6); }
+  .listening .mic-dot { animation: ping 1.6s ease-out infinite; }
+  @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(255, 212, 92, .55); } 100% { box-shadow: 0 0 0 14px rgba(255, 212, 92, 0); } }
+
+  .said {
+    font-family: var(--display); font-weight: 700; font-size: clamp(2.3rem, 6.2vw, 4.9rem);
+    line-height: 1.04; letter-spacing: -0.025em; margin: 0; min-height: 2.1em; color: #fff;
+  }
+  .said .w { color: rgba(236, 230, 255, .28); transition: color .18s ease-out; }
+  .said .w.heard { color: #fff; }
+  .said .w.now { color: var(--pollen); }
+  .said .wake { font-weight: 500; }
+
+  .did { list-style: none; margin: 30px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; min-height: 52px; }
+  .did li {
+    display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px 10px 12px; border-radius: 12px;
+    background: rgba(29, 19, 66, .7); border: 1px solid rgba(143, 114, 232, .55); color: var(--petal); font-size: 1rem;
+    opacity: 0; transform: translateY(6px); transition: opacity .25s ease-out, transform .25s ease-out;
+  }
+  .did li.in { opacity: 1; transform: none; }
+  .did svg { width: 20px; height: 20px; flex: none; color: var(--pollen); }
+
+  .intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px 48px; align-items: end; margin-top: 44px; padding-top: 32px; border-top: 1px solid rgba(236, 230, 255, .18); }
+  .intro p { margin: 0; font-size: 1.2rem; max-width: 34em; color: var(--petal); }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 12px 26px; border-radius: 14px; font-weight: 700; font-size: 1.05rem; text-decoration: none; }
+  .btn.primary { background: var(--pollen); color: var(--ink); }
+  .btn.primary:hover { background: #ffe08a; }
+  .pause { display: inline-flex; align-items: center; background: none; border: 1.5px solid rgba(236, 230, 255, .35); color: var(--petal); border-radius: 12px; min-height: 44px; padding: 6px 14px; font: inherit; font-size: .95rem; cursor: pointer; }
+  .pause:hover { background: rgba(236, 230, 255, .1); }
+
+  /* ---------- facts ---------- */
+  .facts { padding: 88px 24px 40px; }
+  .facts h2 { font-family: var(--display); font-weight: 800; font-size: clamp(1.7rem, 3.4vw, 2.4rem); letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 40px; max-width: 22em; color: var(--ink); }
+  .row { display: grid; grid-template-columns: minmax(180px, 300px) minmax(0, 1fr); gap: 8px 48px; padding: 28px 0; border-top: 1px solid #d9d1f5; }
+  .row h3 { margin: 0; font-family: var(--display); font-weight: 700; font-size: 1.3rem; color: var(--jacaranda); line-height: 1.3; }
+  .row p { margin: 0; color: var(--ink-soft); max-width: 40em; font-size: 1.08rem; }
+  .row code { font-size: .9em; background: #ebe5ff; color: var(--ink); padding: 2px 7px; border-radius: 6px; }
+
+  .status { margin: 48px 0 0; padding: 22px 24px; border-radius: 16px; background: #fff; border: 1px solid #ddd5f7; display: flex; gap: 16px; align-items: flex-start; }
+  .status svg { width: 26px; height: 26px; flex: none; color: var(--bloom); margin-top: 2px; }
+  .status p { margin: 0; color: var(--ink-soft); }
+  .status strong { color: var(--ink); }
+
+  footer { padding: 36px 24px 48px; color: var(--ink-soft); font-size: .95rem; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid #d9d1f5; padding-top: 24px; }
+
+  @media (max-width: 760px) {
+    .intro { grid-template-columns: 1fr; }
+    .row { grid-template-columns: 1fr; }
+    .said { min-height: 3.2em; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .listening .mic-dot { animation: none; }
+    .said .w, .did li { transition: none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="top" aria-label="Main">
+      <a class="brand" href="/" aria-label="Wezesha home">
+        <svg viewBox="0 0 40 40" aria-hidden="true">
+          <rect x="3" y="15" width="6" height="10" rx="3" fill="#b9acec"/>
+          <rect x="12" y="9" width="6" height="22" rx="3" fill="#ece6ff"/>
+          <rect x="21" y="4" width="6" height="32" rx="3" fill="#ffd45c"/>
+          <rect x="30" y="12" width="6" height="16" rx="3" fill="#8f72e8"/>
+        </svg>
+        Wezesha
+      </a>
+      <span class="navlinks"><a class="navlink" href="/blog/">Blog</a>
+      <a class="pill" href="https://wezesha-demo.kilimo.tech/">Try the demo</a></span>
+    </nav>
+
+    <div class="stage" id="main">
+      <h1 class="sr">Wezesha lets you use any website or app by voice. For example, say “Computer, open the shop and add rice to my cart”, and it happens.</h1>
+      <div aria-hidden="true">
+        <p class="cue"><span class="mic-dot"></span><span id="cue-text">Listening</span></p>
+        <p class="said" id="said"></p>
+        <ul class="did" id="did"></ul>
+      </div>
+
+      <div class="intro">
+        <p>
+          Wezesha means “to enable” in Swahili. It lets people who find a mouse, keyboard or screen
+          hard to use control any website or app by voice. It runs on your own phone or computer,
+          so what you say never leaves it.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="https://wezesha-demo.kilimo.tech/">Try the voice demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="facts" aria-labelledby="facts-title">
+  <div class="wrap">
+    <h2 id="facts-title">Built for people who are shut out of websites today.</h2>
+
+    <div class="row">
+      <h3>Works on any website</h3>
+      <p>It reads the page the way a screen reader does, so it knows every button and form field by name.
+        A site adds it with one line: <code>&lt;script src="voicenav.js"&gt;</code>. Web apps can teach it their own actions.</p>
+    </div>
+    <div class="row">
+      <h3>No hands needed</h3>
+      <p>Turn on “keep listening” once. After that, start with “computer” and say what you want:
+        open a page, add to cart, fill in your phone number, hear the page read out.</p>
+    </div>
+    <div class="row">
+      <h3>Private and offline</h3>
+      <p>Speech recognition and understanding run inside the browser. No audio is sent to a server,
+        and after the first visit it works without a connection.</p>
+    </div>
+    <div class="row">
+      <h3>English now, Kiswahili next</h3>
+      <p>We are training the speech model on Kiswahili, and building it with organisations of persons
+        with disabilities, as the UN Convention on the Rights of Persons with Disabilities asks.</p>
+    </div>
+
+    <div class="status" role="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20h20M5 20V9l7-5 7 5v11"/><path d="M9 20v-6h6v6"/></svg>
+      <p><strong>This site is still being built.</strong> The demo works best in Chrome on a computer.
+        The first visit downloads about 50 MB of voice models; after that it starts in a few seconds.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Wezesha, Nairobi</span>
+    <span>Guided by the UN Convention on the Rights of Persons with Disabilities</span>
+  </div>
+</footer>
+
+<script>
+  // The hero plays spoken commands as live captions, then shows what was done.
+  const scenes = [
+    { said: 'Computer, open the shop and add rice to my cart.', did: ['Opened Shop', 'Added Rice 5kg to your cart'] },
+    { said: 'Computer, my phone number is 0712 345 678.', did: ['Typed 0712 345 678 in Phone number'] },
+    { said: 'Computer, show only pending orders.', did: ['Showing 2 pending orders'] },
+    { said: 'Computer, read the page.', did: ['Reading: Clinic opening hours, Monday to Friday…'] },
+  ];
+  const tick = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  const saidEl = document.getElementById('said');
+  const didEl = document.getElementById('did');
+  const cue = document.getElementById('cue-text');
+  const stage = document.querySelector('.stage');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let paused = still, timers = [], i = 0;
+
+  function show(scene, animate) {
+    timers.forEach(clearTimeout); timers = [];
+    const words = scene.said.split(' ');
+    saidEl.innerHTML = words.map((w, k) => `<span class="w${k === 0 ? ' wake' : ''}">${w}</span>`).join(' ');
+    didEl.innerHTML = scene.did.map((d) => `<li>${tick}<span>${d}</span></li>`).join('');
+    const spans = [...saidEl.children], items = [...didEl.children];
+    if (!animate) {
+      spans.forEach((s) => s.classList.add('heard'));
+      items.forEach((li) => li.classList.add('in'));
+      cue.textContent = 'Done';
+      return;
+    }
+    stage.classList.add('listening');
+    cue.textContent = 'Listening';
+    spans.forEach((s, k) => timers.push(setTimeout(() => {
+      spans.forEach((x) => x.classList.remove('now'));
+      s.classList.add('heard', 'now');
+    }, 380 + k * 300)));
+    const end = 380 + spans.length * 300;
+    timers.push(setTimeout(() => {
+      spans.forEach((x) => x.classList.remove('now'));
+      stage.classList.remove('listening');
+      cue.textContent = 'Done';
+    }, end));
+    items.forEach((li, k) => timers.push(setTimeout(() => li.classList.add('in'), end + 250 + k * 450)));
+    timers.push(setTimeout(() => { if (!paused) { i = (i + 1) % scenes.length; show(scenes[i], true); } }, end + 3600));
+  }
+
+  // WCAG 2.2.2: anything that moves for more than five seconds needs a pause.
+  const btn = document.createElement('button');
+  btn.className = 'pause';
+  btn.type = 'button';
+  const label = () => (btn.textContent = paused ? 'Play example' : 'Pause example');
+  btn.onclick = () => { paused = !paused; label(); show(scenes[i], !paused); };
+  label();
+  // Keep the button outside the aria-hidden block so keyboard and screen reader users can reach it.
+  document.querySelector('.intro .actions').appendChild(btn);
+
+  show(scenes[0], !paused);
+</script>
+<script type="module" src="https://wezesha-demo.kilimo.tech/voicenav/voicenav.js"></script>
+</body>
+</html>
